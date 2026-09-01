@@ -1,123 +1,93 @@
 # Oncoming
 
-Current version: **v0.2.0**.
+Arcade open-world crash racer in the browser. Low-poly Ember Bay. Original IP.
 
-Arcade crash-racer set in the fictional city of Ember Bay. Drive the Vesper GT, roam the grid, farm boost from near-misses, and smash traffic for more. Slow at the glowing junction to pick Race, Takedown, Route, or Wreck. Pull into Hats Off Works to swap tires, brakes, and engine -- parts change handling, they are not cosmetic.
+Hats Off IT / [ofone.dev](https://ofone.dev). Play host (soon): [oncoming.of1.dev](https://oncoming.of1.dev)
 
-Original IP. Inspired by arcade crash-racing and open-world racers. Not affiliated with Electronic Arts or any other publisher. Hats Off IT / ofone.dev.
+## What this is
 
-## Play
+I want a game you can open in a tab, grab a pad, and drive. Smash traffic, farm boost, take a junction event, pull into a garage and actually feel the parts you bolt on. Not a strategy deck. A car.
 
-Install dependencies, then start the Vite dev server:
+Ember Bay is fictional, but the bones are this bay: water, a span, hills inland, port vs downtown. East Bay energy without copying real streets or anyone else's city.
 
-    npm install
-    npm run dev
+The handling is supposed to sit between arcade and real. Sticky tires bite harder and drag more. Big brakes stop shorter and add mass. Engine swaps shove harder. If you change a part and the car doesn't feel different, that's a bug.
 
-Open the local URL Vite prints (default http://localhost:5173).
+This is **not** a sequel, remake, or clone of any published racer. Names, city, cars, and modes are ours. Inspired by the *feeling* of open-world crash racing — free roam, takedowns that take a few hits, a wreck mode where you keep the pileup going — with our own map and rules.
 
-Production build: npm run build then npm run preview.
+We're still in **0.x**. Far from v1. v0.1.0 was the first playable slice. Current work is v0.2.0: garage, packs, a bigger bay, real HP on cars, more modes.
 
-## Controls
+## Why it's public
 
-Keyboard
-- W / Up accelerate
-- S / Down reverse
-- A / Left steer left
-- D / Right steer right
-- Shift boost
-- Space brake
+I want people to fork it and send PRs.
 
-Garage (Hats Off Works)
-- Drive into the teal warehouse bay at low speed (or stop inside)
-- 1 or Left/Right -- cycle tires (Street / Sticky)
-- 2 or Up/Down -- cycle brakes (Stock / Big)
-- 3 -- cycle engine (Mill / Twin)
-- Enter / Esc / E -- roll out
+Useful PRs look like:
 
-Junction events
-- Slow near the orange marker to open the picker
-- 1-4 or Up/Down, Enter to start, Esc to leave
-- Race -- six gates on the 10x10 grid
-- Takedown -- smash four cars (HP to 0)
-- Route -- one finish at Ember Point across The Span
-- Wreck -- timed smash score while tumbling
+- A pack: a new car that `extends` `base-car`, or a tire/brake/engine that changes the spec
+- Map: more road, a better landmark, districts that read at speed
+- Feel: takedown HP, wreck scoring, race gate layouts — numbers in `src/pack.json` first, code only if the data model can't express it
+- HUD/UX: minimap, waypoints, garage UI that a stranger can use without a lecture
+- Performance: keep it cheap. Low-poly is the point so it runs on a laptop in Chrome
 
-Gamepad
-- Left stick steer
-- RT or A accelerate
-- B (or LT) brake
-- RB, LB, X, or Y boost
+Less useful: a rewrite, a new engine, or anything that puts someone else's IP in the tree.
 
-On-screen hints update when a pad is connected.
+## Run
 
-## Waypoints
+```
+npm install
+npm run dev
+```
 
-World pillars bob at points of interest. A HUD compass and a cheap minimap (top-right) track the current primary target:
+Open the URL Vite prints (default http://localhost:5173).
 
-- GARAGE (teal) -- always, unless you are inside the shop
-- JUNCTION (orange) -- when the event is idle
-- GATE (cyan) -- next race checkpoint
-- EMBER POINT -- route finish across The Span
-- SMASH / WRECK -- HUD-only (no fake GPS route)
+```
+npm run build
+npm run preview
+```
 
-Follow the compass needle or the minimap dots.
+### Controls
 
-## Garage handling
+Keyboard: WASD / arrows drive, Shift boost, Space brake. A is left, D is right.
 
-The Vesper reads a real-ish spec (mass, tire grip, brake force, engine, drag) with arcade boost stacked on top.
+Garage (Hats Off Works): drive into the bay slow. `1` tires, `2` brakes, `3` engine. Enter / Esc / E to roll out.
 
-- Street tires -- stock bite, clean roll
-- Sticky tires -- about 1.6x grip (tighter turn-in) but more rolling drag / faster coast-down
-- Stock brakes -- 48 brake force, mass 1.0
-- Big brakes -- 1.85x stop, plus 0.2 mass (slower launch)
-- Mill engine -- stock accel / top / boost
-- Twin engine -- 1.35x accel, 1.18x top, stronger boost, extra mass and rolling drag
+Pad: left stick steer, RT / A throttle, B brake, RB / X boost.
 
-Driving reads the merged spec (vehicle + tires + brakes + engine). Swap, then drive. Twin shoves harder. Sticky turns in harder. Big brakes stop shorter. Boost kit and armor exist in the pack for later UI.
+## Packs / mods
 
-## Packs
+Oncoming loads `src/pack.json`. Entries are plain objects. If something has `"extends": "parent-id"`, the loader merges it onto the parent. A later pack should only override what it changes.
 
-Oncoming loads a JSON core pack (src/pack.json). Entries are plain objects. If an entry has extends set to a parent id, the loader deep-merges it onto the parent. Later mods override only the fields they change -- no class framework.
+Prefab types: `vehicles`, `parts`, `props`, `pois`, `events`.
 
-Prefab types in the manifest: vehicles, parts, props, pois, events. The player Vesper GT and traffic cars all instantiate from the same base-car kit (chassis, named wheel hardpoints, collision radius, default spec). Traffic entries override color / scale / name.
+Player Vesper GT and traffic cars all come from `base-car` (chassis, wheel hardpoints, collision, spec). Traffic is color / scale / name.
 
-Example mod that only paints the Vesper and bolts on sticky tires:
+Tiny mod example — paint the Vesper and bolt sticky tires:
 
+```json
+{
+  "id": "sunset-mod",
+  "vehicles": [
     {
-      "id": "sunset-mod",
-      "vehicles": [
-        {
-          "id": "vesper-sunset",
-          "extends": "vesper-gt",
-          "color": 16737792,
-          "tires": "sticky"
-        }
-      ]
+      "id": "vesper-sunset",
+      "extends": "vesper-gt",
+      "color": 16737792,
+      "tires": "sticky"
     }
+  ]
+}
+```
 
-## Design
+## Modes (in progress)
 
-- Small low-poly city: blocks, intersections, sidewalks, buildings, harbor piers, smashable props, a teal garage lot away from the junction.
-- Arcade handling and a chase camera. Crashes spin you out; you recover and keep going -- no mission-fail reset.
-- Boost fills from near-misses with traffic and from smashing rivals or street props.
-- Junction events are win/lose with a timer, then the marker returns.
+Named for Ember Bay, not anyone else's menu:
 
-## Roster (fictional)
+- Race — gates in order on a longer course
+- Takedown — wreck cars; HP, not one-shot
+- Route — point to point, beat a time
+- Wreck — crash, then keep the pileup going for score
+- Stunt / Marked — in the pack; not all wired yet
 
-- City: Ember Bay
-- Player: Vesper GT
-- Shop: Hats Off Works
-- Traffic: Ashline Coupe, Forge Hauler, Kestrel Hatch, Nimbus Van, Solara Roadster
+## License
 
-City and vehicles are original. No licensed music, third-party art packs, or copyrighted brands.
+MIT. Fork it. If you ship a descendant, keep the original-IP rule: no one else's cars, city, or trademarks.
 
-## Stack
-
-Vite + JavaScript + Three.js. City geometry is built from primitives at runtime. Physics is a lightweight arcade model (no rigid-body engine). Content is a JSON pack with extends merge.
-## Damage
-
-Traffic cars have HP from the pack (base 100, vans more, hatches less). A glancing clip chips HP (CLIP, sparks, slight boost). A committed shunt at speed dumps a big chunk (SHUNT). The car only goes airborne as a TAKEDOWN when HP hits 0. Near-misses still fill boost without dealing damage. Designer fields: vehicles[].hp and vehicles[].armor.
-
-## Map
-
-Ember Bay is a 10x10 block grid (BLOCK 52) plus a west water bay. Junction is the center at 260, 260. Hats Off Works is the teal lot at grid 1,8 (Ash Wharf). West of the grid is water, The Span (gold rails at z=260), and Ember Point island at (-70, 260). The minimap paints water vs land vs the span. Race gates use outer intersections. Route finishes at Ember Point.
+Hats Off IT · ofone.dev · Ember Bay
