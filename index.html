@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Oncoming — Ember Bay</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <div id="hud">
+      <div id="brand">
+        <div class="logo">ONCOMING</div>
+        <div class="city">EMBER BAY · VESPER GT</div>
+      </div>
+
+      <div id="boost-wrap">
+        <div class="label">BOOST</div>
+        <div class="bar"><div id="boost-fill"></div></div>
+      </div>
+
+      <div id="speedo">
+        <div id="speed">0</div>
+        <div class="unit">KM/H</div>
+      </div>
+
+      <div id="event-banner" class="hidden"></div>
+      <div id="toast"></div>
+
+      <div id="controls">
+        <div><kbd>WASD</kbd> / <kbd>Arrows</kbd> drive · <kbd>Shift</kbd> boost · <kbd>Space</kbd> brake</div>
+        <div>Pad: left stick steer · RT / A throttle · B brake · RB / X boost</div>
+      </div>
+    </div>
+
+    <div id="splash">
+      <div class="splash-inner">
+        <p class="kicker">OPEN WORLD · CRASH RACER</p>
+        <h1>ONCOMING</h1>
+        <p class="place">EMBER BAY</p>
+        <p class="blurb">
+          Free roam the grid. Clip traffic for boost. Smash rivals for more.
+          Hit the glowing junction for a sprint or a takedown challenge.
+        </p>
+        <p class="cta" id="cta">PRESS ANY KEY / BUTTON</p>
+      </div>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
