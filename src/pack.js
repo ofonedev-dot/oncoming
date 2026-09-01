@@ -58,6 +58,7 @@ export function loadPack(json) {
   return {
     id: json.id,
     name: json.name,
+    world: json.world || { block: 52, grid: 10, trafficCount: 28, fog: 0.0062 },
     vehicles,
     parts,
     props,
