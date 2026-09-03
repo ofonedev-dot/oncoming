@@ -1,1 +1,98 @@
-PLACEHOLDER_INDEX
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Oncoming — Ember Bay</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <div id="hud">
+      <div id="brand">
+        <div class="logo">ONCOMING</div>
+        <div class="city">EMBER BAY · VESPER GT</div>
+        <div id="loadout">STREET · STOCK · MILL</div>
+      </div>
+
+      <canvas id="minimap" width="148" height="148" aria-label="Ember Bay map"></canvas>
+
+      <div id="compass">
+        <div id="compass-dial">
+          <div id="compass-needle"></div>
+        </div>
+        <div id="compass-meta">
+          <div id="compass-label">JUNCTION</div>
+          <div id="compass-dist">0 m</div>
+        </div>
+      </div>
+
+      <div id="boost-wrap">
+        <div class="label">BOOST</div>
+        <div class="bar"><div id="boost-fill"></div></div>
+      </div>
+
+      <div id="speedo">
+        <div id="speed">0</div>
+        <div class="unit">KM/H</div>
+      </div>
+
+      <div id="event-banner" class="hidden"></div>
+      <div id="toast"></div>
+
+      <div id="controls">
+        <div><kbd>WASD</kbd> / <kbd>Arrows</kbd> drive · <kbd>Shift</kbd> boost · <kbd>Space</kbd> brake · <kbd>M</kbd> map · garage bay to swap parts</div>
+        <div>Pad: left stick steer · RT / A throttle · B brake · RB / X boost</div>
+      </div>
+    </div>
+
+    <div id="garage-overlay" class="hidden">
+      <div class="garage-panel">
+        <p class="kicker">HATS OFF WORKS</p>
+        <h2>GARAGE</h2>
+        <p class="place">VESPER GT</p>
+        <div id="garage-parts"></div>
+        <p id="garage-feel" class="feel"></p>
+        <p class="hint"><kbd>1</kbd> tires · <kbd>2</kbd> brakes · <kbd>3</kbd> engine · <kbd>Enter</kbd> / <kbd>Esc</kbd> roll out</p>
+      </div>
+    </div>
+
+    <div id="mode-overlay" class="hidden">
+      <div class="garage-panel mode-panel">
+        <p class="kicker">EMBER BAY</p>
+        <h2>EVENTS</h2>
+        <p class="place">JUNCTION</p>
+        <div id="mode-list"></div>
+        <p class="hint"><kbd>1</kbd>–<kbd>4</kbd> / <kbd>↑</kbd><kbd>↓</kbd> pick · <kbd>Enter</kbd> go · <kbd>Esc</kbd> leave</p>
+      </div>
+    </div>
+
+    <div id="map-overlay" class="hidden">
+      <div class="garage-panel">
+        <p class="kicker">EMBER BAY</p>
+        <h2>MAP</h2>
+        <p class="place">WAYPOINTS</p>
+        <div id="map-list"></div>
+        <p class="hint"><kbd>1</kbd>–<kbd>9</kbd> / <kbd>↑</kbd><kbd>↓</kbd> pick · <kbd>Enter</kbd> GPS · <kbd>X</kbd> clear · <kbd>M</kbd> / <kbd>Esc</kbd> close</p>
+      </div>
+    </div>
+
+    <div id="splash">
+      <div class="splash-inner">
+        <p class="kicker">OPEN WORLD · CRASH RACER</p>
+        <h1>ONCOMING</h1>
+        <p class="place">EMBER BAY</p>
+        <p class="blurb">
+          Free roam Ember Bay. Follow teal garage and orange junction waypoints,
+          or hit M and pick a destination — gold GPS line plus compass take you there.
+          Clip traffic for boost. Smash rivals when their HP hits zero. Pull into
+          Hats Off Works to swap tires, brakes, and engine — parts change how the
+          Vesper actually drives. Slow at the junction to pick Race, Takedown,
+          Route, or Wreck.
+        </p>
+        <p class="cta" id="cta">PRESS ANY KEY / BUTTON</p>
+      </div>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
