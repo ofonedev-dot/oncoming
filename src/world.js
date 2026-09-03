@@ -488,6 +488,47 @@ function addProp(x, z, kind) {
   });
 }
 
+function buildLandmark(poi) {
+  const h = poi.h || 52;
+  const w = poi.w || 6.2;
+  const d = poi.d || 6.2;
+  const x = poi.x;
+  const z = poi.z;
+  const color = poi.color || 0xc45a32;
+  const stack = new THREE.Mesh(
+    new THREE.BoxGeometry(w, h, d),
+    new THREE.MeshStandardMaterial({
+      color,
+      roughness: 0.52,
+      metalness: 0.28,
+      emissive: 0x4a1408,
+      emissiveIntensity: 0.35,
+    }),
+  );
+  stack.position.set(x, h / 2, z);
+  stack.castShadow = true;
+  scene.add(stack);
+  addAABB(x, z, w + 0.4, d + 0.4);
+  const collar = new THREE.Mesh(
+    new THREE.BoxGeometry(w + 1.8, 1.6, d + 1.8),
+    new THREE.MeshStandardMaterial({
+      color: 0xffb040,
+      roughness: 0.4,
+      metalness: 0.22,
+      emissive: 0x5a2808,
+      emissiveIntensity: 0.55,
+    }),
+  );
+  collar.position.set(x, h * 0.78, z);
+  scene.add(collar);
+  const plume = new THREE.Mesh(
+    new THREE.CylinderGeometry(1.15, 2.6, 11, 8),
+    new THREE.MeshBasicMaterial({ color: 0xff7a30, transparent: true, opacity: 0.5 }),
+  );
+  plume.position.set(x, h + 5.5, z);
+  scene.add(plume);
+}
+
 function makeWaypointMarker(color, tall = false) {
   const g = new THREE.Group();
   const mat = new THREE.MeshBasicMaterial({ color, transparent: true, opacity: tall ? 1 : 0.92 });
@@ -842,6 +883,14 @@ function buildCity() {
         continue;
       }
 
+      const land = pack.pois.find(
+        (p) => p.kind === 'landmark' && Math.floor(p.x / BLOCK) === gx && Math.floor(p.z / BLOCK) === gz,
+      );
+      if (land) {
+        buildLandmark(land);
+        continue;
+      }
+
       const inset = 3.2;
       const count = gx % 3 === 0 ? 2 : 1;
       if (count === 1) {
@@ -865,6 +914,12 @@ function buildCity() {
   }
 
   buildBay();
+  for (const p of pack.pois) {
+    if (p.kind !== 'landmark') continue;
+    const lgx = Math.floor(p.x / BLOCK);
+    const lgz = Math.floor(p.z / BLOCK);
+    if (lgx < 0 || lgz < 0 || lgx >= GRID || lgz >= GRID) buildLandmark(p);
+  }
   for (let i = 0; i < 3; i++) {
     const pier = new THREE.Mesh(
       new THREE.BoxGeometry(4, 0.5, 18),
