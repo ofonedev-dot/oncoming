@@ -29,30 +29,10 @@
       },
       "hardpoints": {
         "wheels": [
-          {
-            "id": "fl",
-            "x": -0.78,
-            "y": 0.32,
-            "z": 0.95
-          },
-          {
-            "id": "fr",
-            "x": 0.78,
-            "y": 0.32,
-            "z": 0.95
-          },
-          {
-            "id": "rl",
-            "x": -0.78,
-            "y": 0.32,
-            "z": -0.95
-          },
-          {
-            "id": "rr",
-            "x": 0.78,
-            "y": 0.32,
-            "z": -0.95
-          }
+          { "id": "fl", "x": -0.78, "y": 0.32, "z": 0.95 },
+          { "id": "fr", "x": 0.78, "y": 0.32, "z": 0.95 },
+          { "id": "rl", "x": -0.78, "y": 0.32, "z": -0.95 },
+          { "id": "rr", "x": 0.78, "y": 0.32, "z": -0.95 }
         ]
       },
       "hp": 100,
@@ -124,343 +104,60 @@
       "traffic": true,
       "hp": 85,
       "armor": 0
+    },
+    {
+      "id": "cinder-notch",
+      "extends": "base-car",
+      "name": "Cinder Notch",
+      "kind": "sport",
+      "color": 14830104,
+      "scale": 0.92,
+      "radius": 1.14,
+      "traffic": true,
+      "hp": 68,
+      "armor": 0
     }
   ],
   "parts": [
-    {
-      "id": "base-part",
-      "name": "Base Part",
-      "feel": "",
-      "mul": {},
-      "add": {}
-    },
-    {
-      "id": "street",
-      "extends": "base-part",
-      "type": "tires",
-      "name": "Street",
-      "feel": "street: balanced bite, clean roll"
-    },
-    {
-      "id": "sticky",
-      "extends": "base-part",
-      "type": "tires",
-      "name": "Sticky",
-      "feel": "sticky: more bite, more drag",
-      "mul": {
-        "tireGrip": 1.6,
-        "coast": 0.68
-      },
-      "add": {
-        "rollingDrag": 0.14
-      }
-    },
-    {
-      "id": "stock",
-      "extends": "base-part",
-      "type": "brakes",
-      "name": "Stock",
-      "feel": "stock: honest stop, light chassis"
-    },
-    {
-      "id": "big",
-      "extends": "base-part",
-      "type": "brakes",
-      "name": "Big",
-      "feel": "big: shorter stop, extra mass",
-      "mul": {
-        "brakeForce": 1.85
-      },
-      "add": {
-        "mass": 0.2
-      }
-    },
-    {
-      "id": "mill",
-      "extends": "base-part",
-      "type": "engine",
-      "name": "Mill",
-      "feel": "mill: stock pull, light block"
-    },
-    {
-      "id": "twin",
-      "extends": "base-part",
-      "type": "engine",
-      "name": "Twin",
-      "feel": "twin: more shove, extra mass",
-      "mul": {
-        "accel": 1.35,
-        "topSpeed": 1.18,
-        "boostAccel": 1.28,
-        "boostTop": 1.16
-      },
-      "add": {
-        "mass": 0.15,
-        "rollingDrag": 0.04
-      }
-    },
-    {
-      "id": "boost-stock",
-      "extends": "base-part",
-      "type": "boost",
-      "name": "Stock Tank",
-      "feel": "stock tank: honest fill"
-    },
-    {
-      "id": "boost-big",
-      "extends": "base-part",
-      "type": "boost",
-      "name": "Big Tank",
-      "feel": "big tank: more juice, hungrier drain",
-      "mul": {
-        "boostTank": 1.4
-      },
-      "add": {
-        "boostDrain": 6
-      }
-    },
-    {
-      "id": "armor-stock",
-      "extends": "base-part",
-      "type": "armor",
-      "name": "Stock",
-      "feel": "stock shell"
-    },
-    {
-      "id": "armor-plate",
-      "extends": "base-part",
-      "type": "armor",
-      "name": "Plate",
-      "feel": "plate: more hp, extra mass",
-      "add": {
-        "mass": 0.25,
-        "hp": 50,
-        "armor": 0.2
-      }
-    }
+    { "id": "base-part", "name": "Base Part", "feel": "", "mul": {}, "add": {} },
+    { "id": "street", "extends": "base-part", "type": "tires", "name": "Street", "feel": "street: balanced bite, clean roll" },
+    { "id": "sticky", "extends": "base-part", "type": "tires", "name": "Sticky", "feel": "sticky: more bite, more drag", "mul": { "tireGrip": 1.6, "coast": 0.68 }, "add": { "rollingDrag": 0.14 } },
+    { "id": "stock", "extends": "base-part", "type": "brakes", "name": "Stock", "feel": "stock: honest stop, light chassis" },
+    { "id": "big", "extends": "base-part", "type": "brakes", "name": "Big", "feel": "big: shorter stop, extra mass", "mul": { "brakeForce": 1.85 }, "add": { "mass": 0.2 } },
+    { "id": "mill", "extends": "base-part", "type": "engine", "name": "Mill", "feel": "mill: stock pull, light block" },
+    { "id": "twin", "extends": "base-part", "type": "engine", "name": "Twin", "feel": "twin: more shove, extra mass", "mul": { "accel": 1.35, "topSpeed": 1.18, "boostAccel": 1.28, "boostTop": 1.16 }, "add": { "mass": 0.15, "rollingDrag": 0.04 } },
+    { "id": "boost-stock", "extends": "base-part", "type": "boost", "name": "Stock Tank", "feel": "stock tank: honest fill" },
+    { "id": "boost-big", "extends": "base-part", "type": "boost", "name": "Big Tank", "feel": "big tank: more juice, hungrier drain", "mul": { "boostTank": 1.4 }, "add": { "boostDrain": 6 } },
+    { "id": "armor-stock", "extends": "base-part", "type": "armor", "name": "Stock", "feel": "stock shell" },
+    { "id": "armor-plate", "extends": "base-part", "type": "armor", "name": "Plate", "feel": "plate: more hp, extra mass", "add": { "mass": 0.25, "hp": 50, "armor": 0.2 } }
   ],
   "props": [
-    {
-      "id": "base-prop",
-      "kind": "crate",
-      "color": 9060914,
-      "w": 1.1,
-      "d": 1.1,
-      "h": 1.1,
-      "smashBoost": 6
-    },
-    {
-      "id": "crate",
-      "extends": "base-prop",
-      "kind": "crate"
-    },
-    {
-      "id": "barrel",
-      "extends": "base-prop",
-      "kind": "barrel",
-      "color": 12861976,
-      "w": 0.7,
-      "d": 0.7,
-      "h": 0.9,
-      "smashBoost": 6
-    },
-    {
-      "id": "dumpster",
-      "extends": "base-prop",
-      "kind": "dumpster",
-      "color": 4025160,
-      "w": 1.6,
-      "d": 0.9,
-      "h": 1.15,
-      "smashBoost": 8
-    },
-    {
-      "id": "cone",
-      "extends": "base-prop",
-      "kind": "cone",
-      "color": 16743192,
-      "w": 0.45,
-      "d": 0.45,
-      "h": 0.85,
-      "smashBoost": 4
-    }
+    { "id": "base-prop", "kind": "crate", "color": 9060914, "w": 1.1, "d": 1.1, "h": 1.1, "smashBoost": 6 },
+    { "id": "crate", "extends": "base-prop", "kind": "crate" },
+    { "id": "barrel", "extends": "base-prop", "kind": "barrel", "color": 12861976, "w": 0.7, "d": 0.7, "h": 0.9, "smashBoost": 6 },
+    { "id": "dumpster", "extends": "base-prop", "kind": "dumpster", "color": 4025160, "w": 1.6, "d": 0.9, "h": 1.15, "smashBoost": 8 },
+    { "id": "cone", "extends": "base-prop", "kind": "cone", "color": 16743192, "w": 0.45, "d": 0.45, "h": 0.85, "smashBoost": 4 }
   ],
   "pois": [
-    {
-      "id": "base-poi",
-      "kind": "waypoint",
-      "label": "POI",
-      "color": 16777215,
-      "x": 0,
-      "z": 0
-    },
-    {
-      "id": "garage",
-      "extends": "base-poi",
-      "kind": "garage",
-      "label": "GARAGE",
-      "color": 4907208,
-      "gx": 1,
-      "gz": 8
-    },
-    {
-      "id": "junction",
-      "extends": "base-poi",
-      "kind": "junction",
-      "label": "JUNCTION",
-      "color": 16742704,
-      "x": 260,
-      "z": 260
-    },
-    {
-      "id": "waypoint",
-      "extends": "base-poi",
-      "kind": "waypoint",
-      "label": "GATE",
-      "color": 6758655
-    },
-    {
-      "id": "ember-point",
-      "extends": "base-poi",
-      "kind": "poi",
-      "label": "EMBER POINT",
-      "color": 4907208,
-      "x": -70,
-      "z": 260
-    },
-    {
-      "id": "the-span",
-      "extends": "base-poi",
-      "kind": "poi",
-      "label": "THE SPAN",
-      "color": 16766720,
-      "x": 10,
-      "z": 260
-    },
-    {
-      "id": "ash-wharf",
-      "extends": "base-poi",
-      "kind": "poi",
-      "label": "ASH WHARF",
-      "color": 12864170,
-      "x": 78,
-      "z": 416
-    },
-    {
-      "id": "ridge",
-      "extends": "base-poi",
-      "kind": "poi",
-      "label": "RIDGE",
-      "color": 7895160,
-      "x": 468,
-      "z": 468
-    }
+    { "id": "base-poi", "kind": "waypoint", "label": "POI", "color": 16777215, "x": 0, "z": 0 },
+    { "id": "garage", "extends": "base-poi", "kind": "garage", "label": "GARAGE", "color": 4907208, "gx": 1, "gz": 8 },
+    { "id": "junction", "extends": "base-poi", "kind": "junction", "label": "JUNCTION", "color": 16742704, "x": 260, "z": 260 },
+    { "id": "waypoint", "extends": "base-poi", "kind": "waypoint", "label": "GATE", "color": 6758655 },
+    { "id": "ember-point", "extends": "base-poi", "kind": "poi", "label": "EMBER POINT", "color": 4907208, "x": -70, "z": 260 },
+    { "id": "the-span", "extends": "base-poi", "kind": "poi", "label": "THE SPAN", "color": 16766720, "x": 10, "z": 260 },
+    { "id": "ash-wharf", "extends": "base-poi", "kind": "poi", "label": "ASH WHARF", "color": 12864170, "x": 78, "z": 416 },
+    { "id": "ridge", "extends": "base-poi", "kind": "poi", "label": "RIDGE", "color": 7895160, "x": 468, "z": 468 },
+    { "id": "cinder-stack", "extends": "base-poi", "kind": "landmark", "label": "CINDER STACK", "color": 12864050, "x": 494, "z": 286, "w": 6.4, "d": 6.4, "h": 56 }
   ],
   "events": [
-    {
-      "id": "base-event",
-      "kind": "event",
-      "time": 30,
-      "need": 4,
-      "label": "EVENT"
-    },
-    {
-      "id": "race",
-      "extends": "base-event",
-      "kind": "race",
-      "label": "RACE",
-      "time": 70,
-      "need": 6,
-      "gates": [
-        [
-          0,
-          5
-        ],
-        [
-          5,
-          9
-        ],
-        [
-          9,
-          5
-        ],
-        [
-          5,
-          1
-        ],
-        [
-          2,
-          8
-        ],
-        [
-          5,
-          5
-        ]
-      ]
-    },
-    {
-      "id": "sprint",
-      "extends": "race",
-      "kind": "race",
-      "label": "RACE"
-    },
-    {
-      "id": "takedown",
-      "extends": "base-event",
-      "kind": "takedown",
-      "label": "TAKEDOWN",
-      "time": 32,
-      "need": 4
-    },
-    {
-      "id": "route",
-      "extends": "base-event",
-      "kind": "route",
-      "label": "ROUTE",
-      "time": 28,
-      "need": 1,
-      "finish": {
-        "x": -70,
-        "z": 260
-      },
-      "finishLabel": "EMBER POINT"
-    },
-    {
-      "id": "wreck",
-      "extends": "base-event",
-      "kind": "wreck",
-      "label": "WRECK",
-      "time": 18,
-      "need": 0,
-      "minSpeed": 5,
-      "scores": {
-        "car": 1500,
-        "prop": 300,
-        "building": 500,
-        "chain": 1.18
-      }
-    },
-    {
-      "id": "stunt",
-      "extends": "base-event",
-      "kind": "stunt",
-      "label": "STUNT",
-      "time": 45,
-      "stub": true
-    },
-    {
-      "id": "marked",
-      "extends": "base-event",
-      "kind": "marked",
-      "label": "MARKED",
-      "time": 40,
-      "stub": true
-    }
+    { "id": "base-event", "kind": "event", "time": 30, "need": 4, "label": "EVENT" },
+    { "id": "race", "extends": "base-event", "kind": "race", "label": "RACE", "time": 70, "need": 6, "gates": [[0, 5], [5, 9], [9, 5], [5, 1], [2, 8], [5, 5]] },
+    { "id": "sprint", "extends": "race", "kind": "race", "label": "RACE" },
+    { "id": "takedown", "extends": "base-event", "kind": "takedown", "label": "TAKEDOWN", "time": 32, "need": 4 },
+    { "id": "route", "extends": "base-event", "kind": "route", "label": "ROUTE", "time": 28, "need": 1, "finish": { "x": -70, "z": 260 }, "finishLabel": "EMBER POINT" },
+    { "id": "wreck", "extends": "base-event", "kind": "wreck", "label": "WRECK", "time": 18, "need": 0, "minSpeed": 5, "scores": { "car": 1500, "prop": 300, "building": 500, "chain": 1.18 } },
+    { "id": "stunt", "extends": "base-event", "kind": "stunt", "label": "STUNT", "time": 45, "stub": true },
+    { "id": "marked", "extends": "base-event", "kind": "marked", "label": "MARKED", "time": 40, "stub": true }
   ],
-  "world": {
-    "block": 52,
-    "grid": 10,
-    "trafficCount": 28,
-    "fog": 0.0062
-  }
+  "world": { "block": 52, "grid": 10, "trafficCount": 28, "fog": 0.0062 }
 }
