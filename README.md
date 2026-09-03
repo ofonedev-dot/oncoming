@@ -2,7 +2,11 @@
 
 Arcade open-world crash racer in the browser. Low-poly Ember Bay. Original IP.
 
-Hats Off IT / [ofone.dev](https://ofone.dev). Play host (soon): [oncoming.of1.dev](https://oncoming.of1.dev)
+**Play (demo):** [oncoming.grok.me](https://oncoming.grok.me)
+
+This repo is the source of truth. Keep editing here. Home on metal later: [oncoming.of1.dev](https://oncoming.of1.dev).
+
+Tagged **v0.2.0**. Still **0.x**. `v1.0.0` is reserved for when it is actually a game.
 
 ## What this is
 
@@ -14,13 +18,34 @@ The handling is supposed to sit between arcade and real. Sticky tires bite harde
 
 This is **not** a sequel, remake, or clone of any published racer. Names, city, cars, and modes are ours. Inspired by the *feeling* of open-world crash racing — free roam, takedowns that take a few hits, a wreck mode where you keep the pileup going — with our own map and rules.
 
-We're still in **0.x**. Far from v1. v0.1.0 was the first playable slice. Current work is v0.2.0: garage, packs, a bigger bay, real HP on cars, more modes.
+## First PR (about 15 minutes)
 
-## Why it's public
+The loader is `src/pack.js`. Data lives in `src/pack.json`. If you can change a number and feel it in the car, that's a good PR.
 
-I want people to fork it and send PRs.
+1. Fork this repo.
+2. `npm install && npm run dev`
+3. Add a traffic car that `extends` `base-car` in `src/pack.json` (drop it in the `vehicles` array).
+4. Drive it. If it doesn't feel different from stock traffic, change `hp`, `scale`, or `color` until it does.
+5. Open a PR. One idea per PR.
 
-Useful PRs look like:
+Tiny example:
+
+```json
+{
+  "id": "ridge-hatch",
+  "extends": "base-car",
+  "name": "Ridge Hatch",
+  "color": 12105912,
+  "scale": 0.94,
+  "traffic": true,
+  "hp": 75,
+  "armor": 0
+}
+```
+
+Same pattern for a tire, brake, or engine in `parts`. Override only what you change.
+
+## Useful PRs
 
 - A pack: a new car that `extends` `base-car`, or a tire/brake/engine that changes the spec
 - Map: more road, a better landmark, districts that read at speed
@@ -28,18 +53,24 @@ Useful PRs look like:
 - HUD/UX: minimap, waypoints, garage UI that a stranger can use without a lecture
 - Performance: keep it cheap. Low-poly is the point so it runs on a laptop in Chrome
 
-Less useful: a rewrite, a new engine, or anything that puts someone else's IP in the tree.
+Prefab types: `vehicles`, `parts`, `props`, `pois`, `events`. Player Vesper GT and traffic cars all come from `base-car`.
+
+## Not useful
+
+A rewrite, a new engine, or anything that puts someone else's IP in the tree. No one else's cars, city, or trademarks.
+
+House style: JSON packs, one file per job. Don't grow `src/main.js` or `src/world.js` unless `pack.json` can't say it.
 
 ## Run
 
-```
+```bash
 npm install
 npm run dev
 ```
 
 Open the URL Vite prints (default http://localhost:5173).
 
-```
+```bash
 npm run build
 npm run preview
 ```
@@ -51,30 +82,6 @@ Keyboard: WASD / arrows drive, Shift boost, Space brake. A is left, D is right.
 Garage (Hats Off Works): drive into the bay slow. `1` tires, `2` brakes, `3` engine. Enter / Esc / E to roll out.
 
 Pad: left stick steer, RT / A throttle, B brake, RB / X boost.
-
-## Packs / mods
-
-Oncoming loads `src/pack.json`. Entries are plain objects. If something has `"extends": "parent-id"`, the loader merges it onto the parent. A later pack should only override what it changes.
-
-Prefab types: `vehicles`, `parts`, `props`, `pois`, `events`.
-
-Player Vesper GT and traffic cars all come from `base-car` (chassis, wheel hardpoints, collision, spec). Traffic is color / scale / name.
-
-Tiny mod example — paint the Vesper and bolt sticky tires:
-
-```json
-{
-  "id": "sunset-mod",
-  "vehicles": [
-    {
-      "id": "vesper-sunset",
-      "extends": "vesper-gt",
-      "color": 16737792,
-      "tires": "sticky"
-    }
-  ]
-}
-```
 
 ## Modes (in progress)
 
@@ -90,4 +97,4 @@ Named for Ember Bay, not anyone else's menu:
 
 MIT. Fork it. If you ship a descendant, keep the original-IP rule: no one else's cars, city, or trademarks.
 
-Hats Off IT · ofone.dev · Ember Bay
+Hats Off IT · [ofone.dev](https://ofone.dev) · Ember Bay
